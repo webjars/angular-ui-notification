@@ -11,23 +11,23 @@
     <packaging>jar</packaging>
     <groupId>org.webjars</groupId>
     <artifactId>angular-ui-notification</artifactId>
-    <version>0.3.5</version>
+    <version>0.3.5-SNAPSHOT</version>
     <name>angular-ui-notification</name>
     <description>WebJar for angular-ui-notification</description>
     <url>http://webjars.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <upstream.url>https://github.com/alexcrack/angular-ui-notification/archive/v0.3.5.zip</upstream.url>
+        <upstream.url>https://github.com/alexcrack/angular-ui-notification/archive/v${version.unsnapshot}.zip</upstream.url>
         <destDir>${project.build.outputDirectory}/META-INF/resources/webjars/${project.artifactId}/${project.version}</destDir>
         <requirejs>
             {
-            "paths": {
-            "WEBJAR_ID": "MAIN_JS"
-            },
-            "shim": {
-            "WEBJAR_ID": ["DEP_ID"]
-            }
+                "paths": {
+                    "angular-ui-notification": "angular-ui-notification"
+                },
+                "shim": {
+                    "angular-ui-notification": ["angular"]
+                }
             }
         </requirejs>
     </properties>
@@ -49,12 +49,19 @@
     </licenses>
 
     <scm>
-        <url>http://github.com/webjars/WEBJAR_ID</url>
-        <connection>scm:git:https://github.com/webjars/WEBJAR_ID.git</connection>
-        <developerConnection>scm:git:https://github.com/webjars/WEBJAR_ID.git</developerConnection>
+        <url>http://github.com/webjars/angular-ui-notification</url>
+        <connection>scm:git:https://github.com/webjars/angular-ui-notification.git</connection>
+        <developerConnection>scm:git:https://github.com/webjars/angular-ui-notification.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>angularjs</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
@@ -88,7 +95,7 @@
                                 <unzip src="${project.build.directory}/${project.artifactId}.zip" dest="${project.build.directory}"/>
                                 <echo message="moving resources"/>
                                 <move todir="${destDir}">
-                                    <fileset dir="${project.build.directory}/${project.artifactId}-${version.unsnapshot}"/>
+                                    <fileset dir="${project.build.directory}/${project.artifactId}-${version.unsnapshot}/dist"/>
                                 </move>
                             </target>
                         </configuration>
